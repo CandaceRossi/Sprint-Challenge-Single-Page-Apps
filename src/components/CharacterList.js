@@ -1,9 +1,19 @@
 import React, { useEffect, useState } from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import CharacterCard from "./CharacterCard";
+import styled from "styled-components";
 
-function CharacterList() {
+const characterStyle = styled.section`
+  width: auto;
+  background: black;
+  color: white;
+  border-radius: 3px;
+  margin: 0 auto;
+  padding: 5px;
+`;
+
+function CharacterList(props) {
   // TODO: Add useState to track data from useEffect
   const [characters, setCharacters] = useState({});
 
@@ -25,20 +35,22 @@ function CharacterList() {
   }, [setCharacters]);
 
   return (
-    <section className="character-list grid-view">
+    <characterStyle>
       <h2>Characters</h2>
       {Array.from(characters).map(item => {
         return (
-          <CharacterCard
-            name={item.name}
-            status={item.status}
-            species={item.species}
-            type={item.type}
-            gender={item.gender}
-          />
+          <Link to={`/${CharacterCard}`}>
+            <CharacterCard
+              name={item.name}
+              status={item.status}
+              species={item.species}
+              type={item.type}
+              gender={item.gender}
+            />
+          </Link>
         );
       })}
-    </section>
+    </characterStyle>
   );
 }
 export default CharacterList;

@@ -1,7 +1,6 @@
 import React from "react";
 
 function CharacterCard({ id, name, status, species, type, gender }) {
-  // const [character, setCharacter] = useState({})
   return (
     <div key={id} className="char-card">
       <h1>{name}</h1>

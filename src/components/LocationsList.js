@@ -1,6 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import LocationCard from "./LocationCard";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+const locationStyle = styled.section`
+  width: auto;
+  background: white;
+  color: black;
+  border-radius: 3px;
+  border: 2px solid black;
+  margin: 0 auto;
+  padding: 5px;
+`;
 
 function LocationsList(props) {
   const [locations, setLocations] = useState({});
@@ -23,20 +35,22 @@ function LocationsList(props) {
   }, [setLocations]);
 
   return (
-    <section className="character-list grid-view">
+    <locationStyle>
       <h2>Locations</h2>
       {Array.from(locations).map(item => {
         return (
-          <LocationCard
-            key={item.id}
-            name={item.name}
-            type={item.type}
-            dimension={item.type}
-            residents={item.residents}
-          />
+          <Link to={`/${LocationCard}`}>
+            <LocationCard
+              key={item.id}
+              name={item.name}
+              type={item.type}
+              dimension={item.type}
+              residents={item.residents}
+            />
+          </Link>
         );
       })}
-    </section>
+    </locationStyle>
   );
 }
 
